@@ -62,7 +62,7 @@ class Polynomial{
                 if (line == null || line.trim().isEmpty()) {
                     return new Polynomial();
                 }
-                Pattern pattern = Pattern.compile("([+-]?\\d+\\.\\d+)x(\\d+)");
+                Pattern pattern = Pattern.compile("([+-]?\\d+\\.\\d+)x(\\d+)"); // regex </3
                 Matcher matcher = pattern.matcher(line);
                 List<Integer> expsList = new ArrayList<>();
                 List<Double> coeffsList = new ArrayList<>();
