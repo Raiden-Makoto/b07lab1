@@ -28,6 +28,8 @@
 
 import java.io.*;
 import java.util.*;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 class Polynomial{
 	double coefficients[];
