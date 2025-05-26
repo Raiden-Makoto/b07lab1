@@ -56,32 +56,32 @@ class Polynomial{
 		return sb.toString();
 	}
 
-	public static Polynomial readFromFile(String filename) throws IOException {
-            try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
-                String line = reader.readLine();
-                if (line == null || line.trim().isEmpty()) {
-                    return new Polynomial();
-                }
-                Pattern pattern = Pattern.compile("([+-]?\\d+\\.\\d+)x(\\d+)"); // regex </3
-                Matcher matcher = pattern.matcher(line);
-                List<Integer> expsList = new ArrayList<>();
-                List<Double> coeffsList = new ArrayList<>();
-                while (matcher.find()) {
-                    double coeff = Double.parseDouble(matcher.group(1));
-                    int exp = Integer.parseInt(matcher.group(2));
-                    coeffsList.add(coeff);
-                    expsList.add(exp);
-                }
-                int N = expsList.size();
-                int[] exponents = new int[N];
-                double[] coefficients = new double[N];
-                for (int i = 0; i < N; i++) {
-                    exponents[i] = expsList.get(i);
-                    coefficients[i] = coeffsList.get(i);
-                }
-                return new Polynomial(coefficients, exponents);
-            }
-        }
+	public Polynomial(String filename) throws IOException {
+		try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+			String line = reader.readLine();
+			if (line == null || line.trim().isEmpty()) {
+				this.coefficients = new double[1];
+				this.exponents = new int[1];
+			}
+			Pattern pattern = Pattern.compile("([+-]?\\d+\\.\\d+)x(\\d+)"); // regex </3
+			Matcher matcher = pattern.matcher(line);
+			List<Integer> expsList = new ArrayList<>();
+			List<Double> coeffsList = new ArrayList<>();
+			while (matcher.find()) {
+				double coeff = Double.parseDouble(matcher.group(1));
+				int exp = Integer.parseInt(matcher.group(2));
+				coeffsList.add(coeff);
+				expsList.add(exp);
+			}
+			int N = expsList.size();
+			this.exponents = new int[N];
+			this.coefficients = new double[N];
+			for (int i = 0; i < N; i++) {
+				this.exponents[i] = expsList.get(i);
+				this.coefficients[i] = coeffsList.get(i);
+			}
+		}
+	}
 
 	public void saveToFile(String filename) throws IOException {
 		try (PrintWriter writer = new PrintWriter(new FileWriter(filename))) {
