@@ -58,8 +58,8 @@ class Polynomial{
 		return sb.toString();
 	}
 
-	public Polynomial(String filename) throws IOException {
-		try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+	public Polynomial(File fried_chicken) throws IOException {
+		try (BufferedReader reader = new BufferedReader(new FileReader(fried_chicken))) {
 			String line = reader.readLine();
 			if (line == null || line.trim().isEmpty()) {
 				this.coefficients = new double[1];
